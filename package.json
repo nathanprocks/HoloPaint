@@ -1,0 +1,14 @@
+{
+	"name": "HoloPaint",
+	"version": "0.1.0",
+	"description": "Holographic paint app for smartphone hologram.",
+	"author": "Nathan Piercy <contact@nathanp.rocks>",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"express": "*",
+		"socket.io": "*"
+	}
+}

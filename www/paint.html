@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HoloPaint</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/paint.js"></script>
+		<style>
+			body {
+				margin: 0;
+			}
+
+			#canvas {
+				background: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="toolbar">
+			Colour:
+			<button onclick="setColour('red');">Red</button>
+			<button onclick="setColour('orange');">Orange</button>
+			<button onclick="setColour('yellow');">Yellow</button>
+			<button onclick="setColour('green');">Green</button>
+			<button onclick="setColour('blue');">Blue</button>
+			<button onclick="setColour('purple');">Purple</button>
+			<button onclick="setColour('cyan');">Cyan</button>
+		</div>
+		<canvas id="canvas"></canvas>
+	</body>
+</html>
