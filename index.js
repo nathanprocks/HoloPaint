@@ -2,7 +2,7 @@
 	---- HoloPaint ----
 	A holographic drawing app
 	Created by Nathan Piercy
-	Copyright (C) 2015
+	Copyright (C) 2016
 */
 
 var express = require('express');
