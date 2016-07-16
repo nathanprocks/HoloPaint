@@ -1,30 +1,30 @@
 var socket = io();
 
 window.onload = function(){
-	var penColour = 'white';
+	var penColour = "white";
 
 	window.setColour = function(colour){
 		penColour = colour;
 	}
 
-	var canvas = document.getElementById('canvas');
-	ctx = canvas.getContext('2d');
+	var canvas = document.getElementById("canvas");
+	ctx = canvas.getContext("2d");
 
-	socket.on('setWidth', function(width){
+	socket.on("setWidth", function(width){
 		canvas.height = canvas.width = width;
 	});
 
-	socket.emit('getWidth');
+	socket.emit("getWidth");
 
 	var startX, startY;
 	var mouseDown = false;
-	canvas.addEventListener('touchstart', function(e){
+	canvas.addEventListener("touchstart", function(e){
 		startX = e.touches[0].clientX;
 		startY = e.touches[0].clientY;
 	})
 
-	canvas.addEventListener('touchmove', function(e){
-		socket.emit('draw', {
+	canvas.addEventListener("touchmove", function(e){
+		socket.emit("draw", {
 			startX: startX,
 			startY: startY,
 			endX: e.touches[0].clientX,
@@ -45,23 +45,23 @@ window.onload = function(){
 		e.preventDefault();
 	}, false);
 
-	canvas.addEventListener('mousedown', function(e){
+	canvas.addEventListener("mousedown", function(e){
 		mouseDown = true;
 		startX = e.clientX;
 		startY = e.clientY;
 	})
 
-	canvas.addEventListener('mouseup', function(e){
+	canvas.addEventListener("mouseup", function(e){
 		mouseDown = false;
 	})
 
-	canvas.addEventListener('mouseleave', function(e){
+	canvas.addEventListener("mouseleave", function(e){
 		mouseDown = false;
 	})
 
-	canvas.addEventListener('mousemove', function(e){
+	canvas.addEventListener("mousemove", function(e){
 		if (mouseDown) {
-			socket.emit('draw', {
+			socket.emit("draw", {
 				startX: startX,
 				startY: startY,
 				endX: e.clientX,
