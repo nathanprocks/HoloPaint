@@ -24,25 +24,25 @@ window.onload = function(){
 	})
 
 	canvas.addEventListener('touchmove', function(e){
-	    socket.emit('draw', {
-	    	startX: startX,
-	    	startY: startY,
-	    	endX: e.touches[0].clientX,
-	    	endY: e.touches[0].clientY,
-	    	colour: penColour
-	    })
+		socket.emit('draw', {
+			startX: startX,
+			startY: startY,
+			endX: e.touches[0].clientX,
+			endY: e.touches[0].clientY,
+			colour: penColour
+		})
 
 		ctx.strokeStyle = penColour;
-	    ctx.beginPath();
-	    ctx.moveTo(startX, startY);
-	    ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
-	    ctx.closePath();
-	    ctx.stroke();
-	    startX = e.touches[0].clientX;
-	    startY = e.touches[0].clientY;
+		ctx.beginPath();
+		ctx.moveTo(startX, startY);
+		ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+		ctx.closePath();
+		ctx.stroke();
+		startX = e.touches[0].clientX;
+		startY = e.touches[0].clientY;
 
-	    // Prevent scrolling
-	    e.preventDefault();
+		// Prevent scrolling
+		e.preventDefault();
 	}, false);
 
 	canvas.addEventListener('mousedown', function(e){
@@ -61,22 +61,22 @@ window.onload = function(){
 
 	canvas.addEventListener('mousemove', function(e){
 		if (mouseDown) {
-		    socket.emit('draw', {
-		    	startX: startX,
-		    	startY: startY,
-		    	endX: e.clientX,
-		    	endY: e.clientY,
-	    		colour: penColour
-		    })
+			socket.emit('draw', {
+				startX: startX,
+				startY: startY,
+				endX: e.clientX,
+				endY: e.clientY,
+				colour: penColour
+			})
 
 			ctx.strokeStyle = penColour;
-		    ctx.beginPath();
-		    ctx.moveTo(startX, startY);
-		    ctx.lineTo(e.clientX, e.clientY);
-		    ctx.closePath();
-		    ctx.stroke();
-		    startX = e.clientX;
-		    startY = e.clientY;
+			ctx.beginPath();
+			ctx.moveTo(startX, startY);
+			ctx.lineTo(e.clientX, e.clientY);
+			ctx.closePath();
+			ctx.stroke();
+			startX = e.clientX;
+			startY = e.clientY;
 		}
 	}, false);
 }
