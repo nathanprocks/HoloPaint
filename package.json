@@ -1,6 +1,6 @@
 {
 	"name": "HoloPaint",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Holographic paint app for smartphone hologram.",
 	"author": "Nathan Piercy <contact@nathanp.rocks>",
 	"main": "index.js",
