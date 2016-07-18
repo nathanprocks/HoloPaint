@@ -46,11 +46,29 @@ window.onload = function(){
 		// Copy offscreen to visible canvas
 		var img = new Image();
 		img.src = offscreenCanvas.toDataURL();
-		var dx = window.innerWidth/2 - offscreenCanvas.width/2;
-		ctx.translate(canvas.width, 0);
+		var dx = -offscreenCanvas.width/2;
+		var dy = -offscreenCanvas.height*1.5;
+
+		// Top side
+		ctx.translate(canvas.width/2, canvas.height/2);
 		ctx.scale(-1, 1);
-		ctx.drawImage(img, dx, 0);
+		ctx.drawImage(img, dx, dy);
+
+		// Left side
+		ctx.rotate(90 * Math.PI / 180);
+		ctx.drawImage(img, dx, dy);
+
+		// Bottom side
+		ctx.rotate(90 * Math.PI / 180);
+		ctx.drawImage(img, dx, dy);
+
+		// Right side
+		ctx.rotate(90 * Math.PI / 180);
+		ctx.drawImage(img, dx, dy);
+
 		ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+		// Left side
 	}
 
 	socket.on("draw", draw);
