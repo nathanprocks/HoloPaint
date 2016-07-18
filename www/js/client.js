@@ -44,9 +44,13 @@ window.onload = function(){
 		offscreenCtx.stroke();
 
 		// Copy offscreen to visible canvas
-		var img = offscreenCtx.getImageData(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+		var img = new Image();
+		img.src = offscreenCanvas.toDataURL();
 		var dx = window.innerWidth/2 - offscreenCanvas.width/2;
-		ctx.putImageData(img, dx, 0);
+		ctx.translate(canvas.width, 0);
+		ctx.scale(-1, 1);
+		ctx.drawImage(img, dx, 0);
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
 	}
 
 	socket.on("draw", draw);
