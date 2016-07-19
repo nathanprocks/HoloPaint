@@ -12,6 +12,8 @@ var io = require("socket.io")(http);
 
 app.set("port", 1337);
 app.use(express.static(__dirname + "/www"));
+app.use("/jquery", express.static(__dirname + "/node_modules/jquery/dist")); // Ugh... jQuery
+app.use("/spectrum-colorpicker", express.static(__dirname + "/node_modules/spectrum-colorpicker"));
 
 http.listen(app.get("port"), function(){
 	console.log("listening on port " + app.get("port"));
