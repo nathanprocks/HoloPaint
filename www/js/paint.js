@@ -5,7 +5,7 @@ window.onload = function(){
 
 	window.setColour = function(colour){
 		penColour = colour;
-	}
+	};
 
 	var canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
@@ -18,28 +18,29 @@ window.onload = function(){
 
 	var startX, startY;
 	var mouseDown = false;
+	var offsetY = canvas.offsetTop;
 	canvas.addEventListener("touchstart", function(e){
 		startX = e.touches[0].clientX;
-		startY = e.touches[0].clientY;
-	})
+		startY = e.touches[0].clientY - offsetY;
+	});
 
 	canvas.addEventListener("touchmove", function(e){
 		socket.emit("draw", {
 			startX: startX,
 			startY: startY,
 			endX: e.touches[0].clientX,
-			endY: e.touches[0].clientY,
+			endY: e.touches[0].clientY - offsetY,
 			colour: penColour
 		})
 
 		ctx.strokeStyle = penColour;
 		ctx.beginPath();
 		ctx.moveTo(startX, startY);
-		ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+		ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY - offsetY);
 		ctx.closePath();
 		ctx.stroke();
 		startX = e.touches[0].clientX;
-		startY = e.touches[0].clientY;
+		startY = e.touches[0].clientY - offsetY;
 
 		// Prevent scrolling
 		e.preventDefault();
@@ -48,16 +49,16 @@ window.onload = function(){
 	canvas.addEventListener("mousedown", function(e){
 		mouseDown = true;
 		startX = e.clientX;
-		startY = e.clientY;
-	})
+		startY = e.clientY - offsetY;
+	});
 
 	canvas.addEventListener("mouseup", function(e){
 		mouseDown = false;
-	})
+	});
 
 	canvas.addEventListener("mouseleave", function(e){
 		mouseDown = false;
-	})
+	});
 
 	canvas.addEventListener("mousemove", function(e){
 		if (mouseDown) {
@@ -65,18 +66,18 @@ window.onload = function(){
 				startX: startX,
 				startY: startY,
 				endX: e.clientX,
-				endY: e.clientY,
+				endY: e.clientY - offsetY,
 				colour: penColour
 			})
 
 			ctx.strokeStyle = penColour;
 			ctx.beginPath();
 			ctx.moveTo(startX, startY);
-			ctx.lineTo(e.clientX, e.clientY);
+			ctx.lineTo(e.clientX, e.clientY - offsetY);
 			ctx.closePath();
 			ctx.stroke();
 			startX = e.clientX;
-			startY = e.clientY;
+			startY = e.clientY - offsetY;
 		}
 	}, false);
 }
