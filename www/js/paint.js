@@ -56,8 +56,14 @@ window.onload = function(){
 		mouseDown = false;
 	});
 
-	canvas.addEventListener("mouseleave", function(e){
-		mouseDown = false;
+	canvas.addEventListener("mouseenter", function(e){
+		if (e.buttons == 1) {
+			startX = e.clientX;
+			startY = e.clientY - offsetY;
+			mouseDown = true;
+		} else {
+			mouseDown = false;
+		}
 	});
 
 	canvas.addEventListener("mousemove", function(e){
