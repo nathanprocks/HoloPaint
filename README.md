@@ -1,5 +1,5 @@
 # HoloPaint
-Holographic drawing app
+Holographic drawing for smartphones (using plastic/glass pyramid)
 
 ### Instructions
 ```
